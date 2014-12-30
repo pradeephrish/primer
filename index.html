@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="js/annyang.js"></script>
+<script src="js/speakClient.js"></script>
+ <script>
+
+  // first we make sure annyang started succesfully
+  if (annyang) {
+
+    // define the functions our commands will run.
+    var hello = function() {
+      speak('Hello, Welcome to Primer, How can we help you');
+    };
+
+    var showPrimer = function(tag) {
+      console.log(tag)
+      alert("Primer Processing Input :"+tag);
+    };
+ 
+    // define our commands.
+    // * The key is what you want your users to say say.
+    // * The value is the action to do.
+    //   You can pass a function, a function name (as a string), or write your function as part of the commands object.
+    var commands = {
+      'hello':        hello,
+      'show me *search':      showPrimer
+    };
+
+    // OPTIONAL: activate debug mode for detailed logging in the console
+    annyang.debug();
+
+    // Add voice commands to respond to
+    annyang.addCommands(commands);
+
+    // OPTIONAL: Set a language for speech recognition (defaults to English)
+    annyang.setLanguage('en');
+
+    // Start listening. You can call this here, or attach this call to an event, button, etc.
+    annyang.start();
+  } else {
+    $(document).ready(function() {
+      $('#unsupported').fadeIn('fast');
+    });
+  }
+
+  </script>
+</head>
+<body>
+ <div id="audio"></div>
+</body>
+</html>
