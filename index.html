@@ -22,7 +22,12 @@
     var askPrimer = function(tag) {
       console.log("Working on "+ tag);
       appendCommand(tag);
+      speak.pause();
     };
+
+    var begin = function(tag){
+      speak.play('Once when a Lion was asleep, a little Mouse began running up and down upon him. This soon wakened the Lion, who placed his huge paw upon him and opened his big jaws to swallow him. "Pardon, O King!" cried the little Mouse, "Forgive me this time. I shall never repeat it and I shall never forget your kindness. And who knows, but I may be able to do you a good turn one of these days?"The Lion was so tickled at the idea of the Mouse being able to help him, that he lifted up his paw and let him go. Short StoriesSometime later a few hunters captured the King and tied him to a tree while they went in search of a wagon to carry him on. Just then the little Mouse happened to pass by, and seeing the sad plight in which the Lion was, ran up to him and soon gnawed away the ropes that bound the King of the Beasts. "Was I not right?" said the little Mouse, very happy to help the Lion. MORAL: Little friends may prove great friends');
+    }
 
     // define our commands.
     // * The key is what you want your users to say say.
@@ -30,7 +35,8 @@
     //   You can pass a function, a function name (as a string), or write your function as part of the commands object.
     var commands = {
       'hello':        hello,
-      'show me *search':      askPrimer
+      'show me *search':      askPrimer,
+      'Tell me a story' : begin
     };
 
     // OPTIONAL: activate debug mode for detailed logging in the console
