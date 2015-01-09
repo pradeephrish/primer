@@ -8,25 +8,74 @@
   <script src="js/controller.js"></script>
   <script>
 
+  var stack = new Array();
+
   // first we make sure annyang started succesfully
   if (annyang) {
 
-    // define the functions our commands will run.
-    var hello = function() {
-      speak.play('Hello, Welcome to Primer, How can we help you ',{},
-        function(){
-          console.log("Completed !");
-        });
-    };
-
-    var askPrimer = function(tag) {
+    var askPrimerImage = function(tag) {
       console.log("Working on "+ tag);
       appendCommand(tag);
-      speak.pause();
+      var speaker = stack.pop();
+      console.log("Speaker is "+speaker);
+      if(speaker)
+        speaker.pause();
+      var primer = getSpeaker(3);
+      primer.play("Searching images for "+tag,{}, function(){
+        showFlickr(tag);  
+        if(speaker){
+          speaker.resume();
+          stack.push(speaker);
+        }
+      });
     };
 
+    var askPrimerVideo = function(tag) {
+      console.log("Working on "+ tag);
+      appendCommand(tag);
+      var speaker = stack.pop();
+      
+      if(speaker)
+        speaker.pause();
+
+      var primer = getSpeaker(4);
+      primer.play("Searching videos for "+tag,{},function(){   
+        onYouTubeApiLoad(tag);
+        if(speaker){
+          speaker.resume();
+          stack.push(speaker);
+        }
+      });
+    }
+
+
     var begin = function(tag){
-      speak.play('Once when a Lion was asleep, a little Mouse began running up and down upon him. This soon wakened the Lion, who placed his huge paw upon him and opened his big jaws to swallow him. "Pardon, O King!" cried the little Mouse, "Forgive me this time. I shall never repeat it and I shall never forget your kindness. And who knows, but I may be able to do you a good turn one of these days?"The Lion was so tickled at the idea of the Mouse being able to help him, that he lifted up his paw and let him go. Short StoriesSometime later a few hunters captured the King and tied him to a tree while they went in search of a wagon to carry him on. Just then the little Mouse happened to pass by, and seeing the sad plight in which the Lion was, ran up to him and soon gnawed away the ropes that bound the King of the Beasts. "Was I not right?" said the little Mouse, very happy to help the Lion. MORAL: Little friends may prove great friends');
+       var begin = getSpeaker(1);
+       console.log("Speaker is "+begin);
+       stack.push(begin);
+       begin.play('Once when a Lion was asleep, a little Mouse began running up and down upon him. This soon wakened the Lion, who placed his huge paw upon him and opened his big jaws to swallow him. "Pardon, O King!" cried the little Mouse, "Forgive me this time. I shall never repeat it and I shall never forget your kindness. And who knows, but I may be able to do you a good turn one of these days?"',{},
+        function(){
+          console.log("page finished");
+          stack.pop();
+        });
+      } 
+
+    var nextPage = function(){
+      var next = getSpeaker(2);
+      stack.push(next);
+      next.play("The Lion was so tickled at the idea of the Mouse being able to help him, that he lifted up his paw and let him go. Short StoriesSometime later a few hunters captured the King and tied him to a tree while they went in search of a wagon to carry him on.",{},function(){
+        console.log("page finished");
+        stack.pop();
+      });
+    }
+
+    var lastPage = function(){
+      var next = getSpeaker(3);
+      stack.push(next);
+      next.play('"Just then the little Mouse happened to pass by, and seeing the sad plight in which the Lion was, ran up to him and soon gnawed away the ropes that bound the King of the Beasts. "Was I not right?" said the little Mouse, very happy to help the Lion. MORAL: Little friends may prove great friends"',{},function(){
+        console.log("the end");
+        stack.pop();
+      });
     }
 
     // define our commands.
@@ -34,9 +83,11 @@
     // * The value is the action to do.
     //   You can pass a function, a function name (as a string), or write your function as part of the commands object.
     var commands = {
-      'hello':        hello,
-      'show me *search':      askPrimer,
-      'Tell me a story' : begin
+      'show me *search':      askPrimerImage,
+      'Tell me more about *search' : askPrimerVideo,
+      'Tell me a story' : begin,
+      'Ok next page' : nextPage,
+      'Ok continue' : lastPage,
     };
 
     // OPTIONAL: activate debug mode for detailed logging in the console
@@ -62,7 +113,6 @@
 <script src="https://apis.google.com/js/client.js?onload=onClientLoad" type="text/javascript"></script>
 </head>
 <body>
- <div id="audio"></div>
  <h2> Welcome to Primer </h2>
  Conversation to Process :
  <div id="list">
@@ -70,7 +120,7 @@
 </br></br>
 Working on ... <input type="text" value="" id="processing">
 </br></br>
-<button onclick="onYouTubeApiLoad('cats')">YouTube</button>&nbsp;<button onclick="showFlickr('cats ')">Flickr</button>&nbsp;<button onclick="wikiAPI('cats ')">Wikipedia</button>
+<!--<button onclick="onYouTubeApiLoad('cats')">YouTube</button>&nbsp;<button onclick="showFlickr('cats ')">Flickr</button>&nbsp;<button onclick="wikiAPI('cats ')">Wikipedia</button>-->
 </br></br>
 <div id="output"></div>
 <div id="flickrGallery"></div>

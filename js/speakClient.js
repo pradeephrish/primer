@@ -1,4 +1,5 @@
-(function(window, undefined) {
+//get multiple speakers
+function getSpeaker(id) {
 
   // Use the correct document accordingly with window argument
   var document = window.document;
@@ -6,15 +7,7 @@
   // Define a local copy of speak
   var speak = {};
 
-  // Map over speak in case of overwrite
-  var _speak = window.speak;
-
-  // Runs speak.js in no conflict mode, returning the original 'speak'
-  // variable to its owner. Returns a reference to this speak object.
-  speak.noConflict = function() {
-    window.speak = _speak;
-    return speak;
-  }
+  var player = "player"+id;
 
   var speakWorker;
   try {
@@ -24,11 +17,11 @@
   }
 
   speak.pause = function() {
-    document.getElementById("player").pause();
+    document.getElementById(player).pause();
   };
 
   speak.resume = function() {
-    document.getElementById("player").play();
+    document.getElementById(player).play();
   };
 
   speak.play = function(text, args, onended) {
@@ -81,15 +74,21 @@
         return ret;
       }
 
-      document.getElementById("audio").innerHTML=("<audio id=\"player\" src=\"data:audio/x-wav;base64,"+encode64(wav)+"\">");
+      //create audio object
+      var audio = "audio"+id;
+      var audioObject = document.createElement("audio");
+      audioObject.id=audio;
+      document.body.appendChild(audioObject);
+
+      document.getElementById(audio).innerHTML=("<audio id=\""+player+"\" src=\"data:audio/x-wav;base64,"+encode64(wav)+"\">");
       if (onended) {
-        document.getElementById("player").addEventListener('ended', onended);
+        document.getElementById(player).addEventListener('ended', onended);
       }
-      document.getElementById("player").play();
+      document.getElementById(player).play();
     }
 
     function playAudioDataAPI(data) {
-      try {
+      try { 
         var output = new Audio();
         output.mozSetup(1, data.sampleRate);
         var num = data.samples.length;
@@ -132,6 +131,5 @@
     }
   };
 
-  // Expose speak to the global object
-  window.speak = speak;
-})(window);
+ return speak;
+}
