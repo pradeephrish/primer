@@ -17,7 +17,6 @@
       console.log("Working on "+ tag);
       appendCommand(tag);
       var speaker = stack.pop();
-      console.log("Speaker is "+speaker);
       if(speaker)
         speaker.pause();
       var primer = getSpeaker(3);
@@ -48,33 +47,50 @@
       });
     }
 
+    var imageOne = '<img src="img/one.jpg"/>';
+    var imageTwo= '<img src="img/two.jpg"/>';
 
     var begin = function(tag){
        var begin = getSpeaker(1);
        console.log("Speaker is "+begin);
        stack.push(begin);
-       begin.play('Once when a Lion was asleep, a little Mouse began running up and down upon him. This soon wakened the Lion, who placed his huge paw upon him and opened his big jaws to swallow him. "Pardon, O King!" cried the little Mouse, "Forgive me this time. I shall never repeat it and I shall never forget your kindness. And who knows, but I may be able to do you a good turn one of these days?"',{},
+       var text = 'Once when a Lion was asleep, a little Mouse began running up and down upon him. This soon wakened the Lion, who placed his huge paw upon him and opened his big jaws to swallow him. "Pardon, O King!" cried the little Mouse, "Forgive me this time. I shall never repeat it and I shall never forget your kindness. And who knows, but I may be able to do you a good turn one of these days?"';
+        $("#storyimage").append(imageOne);
+        $("#storytext").append(text);
+        begin.play(text,{},
         function(){
           console.log("page finished");
           stack.pop();
+          $("#storytext").empty();
+          $("#storyimage").empty();
         });
       } 
 
     var nextPage = function(){
       var next = getSpeaker(2);
       stack.push(next);
-      next.play("The Lion was so tickled at the idea of the Mouse being able to help him, that he lifted up his paw and let him go. Short StoriesSometime later a few hunters captured the King and tied him to a tree while they went in search of a wagon to carry him on.",{},function(){
+      var text = "The Lion was so tickled at the idea of the Mouse being able to help him, that he lifted up his paw and let him go. Short StoriesSometime later a few hunters captured the King and tied him to a tree while they went in search of a wagon to carry him on.";
+      $("#storyimage").append(imageOne);
+      $("#storytext").append(text);
+      next.play(text,{},function(){
         console.log("page finished");
         stack.pop();
+        $("#storytext").empty();
+        $("#storyimage").empty();
       });
     }
 
     var lastPage = function(){
       var next = getSpeaker(3);
       stack.push(next);
-      next.play('"Just then the little Mouse happened to pass by, and seeing the sad plight in which the Lion was, ran up to him and soon gnawed away the ropes that bound the King of the Beasts. "Was I not right?" said the little Mouse, very happy to help the Lion. MORAL: Little friends may prove great friends"',{},function(){
+      var text = '"Just then the little Mouse happened to pass by, and seeing the sad plight in which the Lion was, ran up to him and soon gnawed away the ropes that bound the King of the Beasts. "Was I not right?" said the little Mouse, very happy to help the Lion. MORAL: Little friends may prove great friends"';
+      $("#storyimage").append(imageTwo);
+      $("#storytext").append(text);
+      next.play(text,{},function(){
         console.log("the end");
         stack.pop();
+        $("#storytext").empty();
+        $("#storyimage").empty(); 
       });
     }
 
@@ -114,11 +130,24 @@
 </head>
 <body>
  <h2> Welcome to Primer </h2>
+ <div style="width:100%; align:left; float:left">
+<div id="storyimage" style="float:left; width: 30%"></div>
+<div id="storytext" style="border: 1px solid;  border-radius: 25px; margin:1px; padding: 10px; align:left;float:left; width: 40%"></div>
+<div id="storytext" style="border: 1px solid;  border-radius: 25px; margin:1px; padding: 10px; align:left;float:left; width: 20%">
+  <center><b>Commands</b></center>
+  <ul>
+    <li>Tell me a Story</li>
+    <li>Ok Next Page</li>
+    <li>Ok Continue</li>
+    <li>Show me (*Search) (Interrupt)</li>
+    <li>Tell me more about (*Search) (Interrupt)</li>
+  </ul>
+</div>
+</div>
+</br></br></br>
  Conversation to Process :
  <div id="list">
  </div>
-</br></br>
-Working on ... <input type="text" value="" id="processing">
 </br></br>
 <!--<button onclick="onYouTubeApiLoad('cats')">YouTube</button>&nbsp;<button onclick="showFlickr('cats ')">Flickr</button>&nbsp;<button onclick="wikiAPI('cats ')">Wikipedia</button>-->
 </br></br>
