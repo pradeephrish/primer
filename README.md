@@ -8,6 +8,7 @@ Primer [project website](http://www.public.asu.edu/~kvanlehn/primer) includes de
 This document contains instructions for setting Primer Skeletal Project on Windows and Mac environment.
 
 Install latest version of [Google Chrome](http://www.google.com/chrome) on Mac/Windows machine
+
 Install latest version of [Git](http://git-scm.com/downloads) on Mac/Windows machine
 
 ### Steps on Mac ###
@@ -32,8 +33,6 @@ Install latest version of [Git](http://git-scm.com/downloads) on Mac/Windows mac
 
 	This will clone primer project content into /Library/WebServer/Documents/primer location
 
-	Now, You can run primer project by opening url <http://localhost/primer> in browser. Once you visit the link, wait for Ready Pop up message. Click Ok. Then you can start by saying "Tell me a Story"
-
 ### Steps on Windows ###
 	
 	Download & Install latest version of XAMMP for Windows from <https://www.apachefriends.org/index.html>
@@ -50,7 +49,8 @@ Install latest version of [Git](http://git-scm.com/downloads) on Mac/Windows mac
 
 	From XAMMP Control Panel Restart the Apache Web Server
 
-	Now, You can run primer project by opening url <http://localhost/primer> in browser. Once you visit the link, wait for Ready Pop up message. Click Ok. Then you can start by saying "Tell me a Story"
+
+Now, You can run primer project by opening [url](http://localhost/primer)-http://localhost/primer in browser. Once you visit the link, wait for Ready Pop up message. Click Ok. Then you can start by saying "Tell me a Story"
 
 
 
