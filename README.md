@@ -8,18 +8,15 @@ Primer [project website](http://www.public.asu.edu/~kvanlehn/primer) includes de
 This document contains instructions for setting Primer Skeletal Project on Windows and Mac environment.
 
 Install latest version of [Google Chrome](http://www.google.com/chrome) on Mac/Windows machine
-
-Since current version of project uses javascript and html, we prefer to use simple Apache Web Server for running the project. But you can install any other tools to run web project.
+Install latest version of [Git](http://git-scm.com/downloads) on Mac/Windows machine
 
 ### Steps on Mac ###
-	
-	Install Git for Mac  from [this link](http://git-scm.com/download/mac)
 	
 	Apache comes pre-installed on latest MAC OS, To enable apache , Run following command on terminal
 
 		sudo apachectl start
 
-	You can check status of apache server running by opening url 'http://localhost' in browser, it should say "it works" 
+	You can check status of apache server running by opening url <http://localhost> in browser, it should say "it works" 
 
 	Default Document Root for hosting web content can be found at following location 
 
@@ -35,12 +32,26 @@ Since current version of project uses javascript and html, we prefer to use simp
 
 	This will clone primer project content into /Library/WebServer/Documents/primer location
 
-	Now, You can run primer project by opening url 'http://localhost/primer/' in browser. Once you visit the link, wait for Ready Pop up message. Click Ok. Then you can start by saying "Tell me a Story"
+	Now, You can run primer project by opening url <http://localhost/primer> in browser. Once you visit the link, wait for Ready Pop up message. Click Ok. Then you can start by saying "Tell me a Story"
 
 ### Steps on Windows ###
 	
-	Install Git for Windows from [this link](http://git-scm.com/download/win)
+	Download & Install latest version of XAMMP for Windows from <https://www.apachefriends.org/index.html>
 
-	
+	Web Root directory of XAMMP can be found at XAMMP Home Directory (in default case: C:/Xammp/htdocs)
+
+	From windows command line goto Web Root directory C:/xammp/htdocs
+
+		cd  <XAMMP INstallation>/xammp/htdocs/
+
+	Clone the github repository into above location by following commands
+
+		sudo git clone https://github.com/pradeephrish/primer.git
+
+	From XAMMP Control Panel Restart the Apache Web Server
+
+	Now, You can run primer project by opening url <http://localhost/primer> in browser. Once you visit the link, wait for Ready Pop up message. Click Ok. Then you can start by saying "Tell me a Story"
+
+
 
 	 
