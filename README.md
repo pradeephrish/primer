@@ -41,7 +41,7 @@ Install latest version of [Git](http://git-scm.com/downloads) on Mac/Windows/Lin
 
 	From windows command line goto Web Root directory C:/xammp/htdocs
 
-		cd  <XAMMP INstallation>/xammp/htdocs/
+		cd  <XAMMP Installation>/xammp/htdocs/
 
 	Clone the github repository into above location by following commands
 
