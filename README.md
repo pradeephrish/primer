@@ -5,18 +5,17 @@ Primer [project website](http://www.public.asu.edu/~kvanlehn/primer) includes de
 
 ## Primer Install ##
 
-This document contains instructions for setting Primer Skeletal Project on Windows and Mac environment
+This document contains instructions for setting Primer Skeletal Project on Windows and Mac environment.
 
-	Install latest version of [Google Chrome](http://www.google.com/chrome) on Mac/Windows machine
+Install latest version of [Google Chrome](http://www.google.com/chrome) on Mac/Windows machine
 
 Since current version of project uses javascript and html, we prefer to use simple Apache Web Server for running the project. But you can install any other tools to run web project.
 
 ### Steps on Mac ###
 	
-	Install Git for Mac  from (this link)[http://git-scm.com/download/mac]
+	Install Git for Mac  from [this link](http://git-scm.com/download/mac)
 	
 	Apache comes pre-installed on latest MAC OS, To enable apache , Run following command on terminal
-
 
 		sudo apachectl start
 
@@ -24,9 +23,13 @@ Since current version of project uses javascript and html, we prefer to use simp
 
 	Default Document Root for hosting web content can be found at following location 
 
-		/Library/WebServer/Documents/
+		'/Library/WebServer/Documents/'
 
-	You can clone the github repository into above location by following command
+	Run following command on terminal to change the directory location
+
+		cd /Library/WebServer/Documents/ 
+
+	Clone the github repository into above location by following commands
 
 		sudo git clone https://github.com/pradeephrish/primer.git
 
@@ -36,6 +39,8 @@ Since current version of project uses javascript and html, we prefer to use simp
 
 ### Steps on Windows ###
 	
-	Install Git for Windows from (this link)[http://git-scm.com/download/win]
+	Install Git for Windows from [this link](http://git-scm.com/download/win)
+
+	
 
 	 
